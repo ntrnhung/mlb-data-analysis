@@ -52,7 +52,7 @@ mlb-data-analysis/
 ├── Final_School_Analysis.sql                    # College player production analysis
 ├── Final_Player_Career_Analysis.sql             # Career longevity & tenure tracking
 ├── Final_Player_Comparison_Analysis.sql         # Player demographics & trends
-└── README.md                                     # Project documentation
+└── README.md                                    # Project documentation
 ```
 
 ---
