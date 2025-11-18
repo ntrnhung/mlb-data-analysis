@@ -78,7 +78,7 @@ mlb-data-analysis/
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/mlb-data-analysis.git
+   git clone https://github.com/ntrnhung/mlb-data-analysis.git
    cd mlb-data-analysis
    ```
 
@@ -95,7 +95,7 @@ mlb-data-analysis/
 
 4. **Load historical MLB data**
    * The project uses publicly available MLB historical data
-   * Data sources: [Sean Lahman's Baseball Database](http://www.seanlahman.com/baseball-archive/statistics/)
+   * Data sources: [Sean Lahman's Baseball Database](https://sabr.org/lahman-database/)
    * Import CSV files into the created tables using MySQL's LOAD DATA INFILE or your SQL client's import functionality
 
 5. **Run analysis queries**
