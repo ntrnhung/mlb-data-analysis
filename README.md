@@ -130,7 +130,7 @@ WITH total_annual_spending AS
             NTILE(5) OVER (ORDER BY overall_avg_annual_spending DESC) AS top_20
 	FROM	overall_avg_spending) 
 
---    Final Step: Filters the ranked teams to only include those assigned to the highest spending bucket (1).
+--    Final Step: Filters the ranked teams to only include those assigned to the highest spending bucket (1)
 SELECT 	teamID,
 		overall_avg_annual_spending
 FROM	ranked_teams
