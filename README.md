@@ -109,27 +109,32 @@ mlb-data-analysis/
 Here's an example query that identifies teams in the top 20% of spending using NTILE():
 
 ```sql
-WITH team_avg_salaries AS (
-    SELECT 
-        team_id,
-        AVG(salary) AS avg_annual_salary
-    FROM salaries
-    GROUP BY team_id
-),
-team_quintiles AS (
-    SELECT 
-        team_id,
-        avg_annual_salary,
-        NTILE(5) OVER (ORDER BY avg_annual_salary DESC) AS spending_quintile
-    FROM team_avg_salaries
-)
-SELECT 
-    team_id,
-    ROUND(avg_annual_salary, 2) AS avg_salary,
-    spending_quintile
-FROM team_quintiles
-WHERE spending_quintile = 1
-ORDER BY avg_annual_salary DESC;
+WITH total_annual_spending AS 
+--    a1. Calculates the total money spent by each team in each year
+	(SELECT DISTINCT 
+			yearID,
+			teamID,
+			SUM(salary) OVER(PARTITION BY yearID, teamID) AS annual_spending_amount
+	FROM 	salaries),
+--    a2. Calculates the average of the annual totals from a1 for each team
+    overall_avg_spending AS
+	(SELECT  teamID,
+			 AVG(annual_spending_amount) AS overall_avg_annual_spending
+	FROM 	 total_annual_spending
+    GROUP BY teamID),
+--    a3. Rank the average spending from a2 for each team 
+--    Bucket (1) contains the top 20% spenders
+    ranked_teams AS
+    (SELECT teamID,
+			overall_avg_annual_spending,
+            NTILE(5) OVER (ORDER BY overall_avg_annual_spending DESC) AS top_20
+	FROM	overall_avg_spending) 
+
+--    Final Step: Filters the ranked teams to only include those assigned to the highest spending bucket (1).
+SELECT 	teamID,
+		overall_avg_annual_spending
+FROM	ranked_teams
+WHERE 	top_20 = 1;
 ```
 
 ---
