@@ -1,5 +1,3 @@
-# mlb-data-analysis
-
 # ⚾ MLB Data Analysis Project: Advanced SQL Querying
 
 ## 🚀 Project Overview
@@ -90,16 +88,17 @@ mlb-data-analysis/
 
 3. **Create tables and load schema**
    ```bash
+   # Replace 'your_username' with your actual MySQL username
    mysql -u your_username -p mlb_analytics < create_statements_final_project_mysql.sql
    ```
 
 4. **Load historical MLB data**
    * The project uses publicly available MLB historical data
-   * Data sources: [Sean Lahman's Baseball Database](https://sabr.org/lahman-database/)
-   * Import CSV files into the created tables using MySQL's LOAD DATA INFILE or your SQL client's import functionality
+   * Data source: [Sean Lahman's Baseball Database](https://sabr.org/lahman-database/)
+   * Import CSV files into the created tables using MySQL's `LOAD DATA INFILE` or your SQL client's import functionality
 
 5. **Run analysis queries**
-   * Open any Final_*.sql file in your SQL client
+   * Open any `Final_*.sql` file in your SQL client
    * Execute queries individually or as a complete script
    * Review results and modify parameters as needed
 
